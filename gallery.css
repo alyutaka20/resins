@@ -1,0 +1,141 @@
+
+/* =========================
+   ギャラリーページ
+   スマホ向け基本設定
+========================= */
+
+/* ページ全体 */
+.gallery-page {
+  width: 100%;             /* 画面幅に合わせる */
+  max-width: 1100px;       /* 最大幅を1100pxに制限 */
+  box-sizing: border-box;  /* paddingを含めて幅を計算 */
+  padding: 40px 20px;      /* 上下40px、左右20pxの余白 */
+  margin: 0 auto;          /* 横方向の中央に配置 */
+}
+
+/* 画面幅768px以上（タブレット・PC） */
+@media (min-width: 768px) {
+  .gallery-page {
+    padding: 60px 30px;    /* PCでは余白を少し広げる */
+  }
+}
+
+/* ページタイトル */
+.gallery-title {
+  margin: 0 0 30px;         /* 下側に余白を作る */
+  text-align: center;       /* 中央揃え */
+  font-size: 1.5rem;        /* 文字サイズ */
+  font-weight: normal;      /* 太字にしない */
+  letter-spacing: 0.1em;    /* 文字間隔 */
+}
+
+/* =========================
+   メイソンリー形式
+========================= */
+
+/* 作品一覧 */
+.gallery-grid {
+  columns: 1; /* スマホでは1列 */
+  column-gap: 12px; /* 列と列の間隔 */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* 作品1つ分 */
+.gallery-grid li {
+  break-inside: avoid; /* 写真が途中で分割されるのを防ぐ */
+  margin-bottom: 12px; /* 写真同士の縦の間隔 */
+}
+
+/* 768px以上の画面では2列にする */
+@media (min-width: 768px) {
+  .gallery-grid {
+    columns: 2;
+  }
+}
+
+
+/* =========================
+   PC表示の余白調整
+========================= */
+
+@media (min-width: 768px) {
+
+  /* 写真の列と列の間隔 */
+  .gallery-grid {
+    column-gap: 20px;
+  }
+
+  /* 写真同士の縦の間隔 */
+  .gallery-grid li {
+    margin-bottom: 20px;
+  }
+
+}
+
+/* =========================
+   写真のホバーエフェクト
+========================= */
+
+/* 写真の動きを滑らかにする */
+.gallery-grid img {
+  transition: transform 0.4s ease;
+}
+
+/* マウスを乗せたとき */
+@media (hover: hover) {
+  .gallery-grid img:hover {
+    transform: scale(1.04); /* 4%だけ拡大 */
+  }
+}
+
+/* =========================
+   ライトボックス
+========================= */
+
+/* 画面全体を覆う背景 */
+.lightbox {
+  display: none; /* 最初は非表示 */
+  position: fixed; /* 画面に固定 */
+  inset: 0; /* 画面の上下左右いっぱい */
+  z-index: 1000; /* 他の要素より前面に表示 */
+
+  /* 背景を半透明の黒にする */
+  background: rgba(0, 0, 0, 0.9);
+
+  /* 写真を中央に配置 */
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* ライトボックス表示中 */
+.lightbox.active {
+  display: flex;
+}
+
+/* 拡大表示する写真 */
+.lightbox-image {
+  display: block;
+  max-width: 100%; /* 横幅が画面からはみ出さない */
+  max-height: 90vh; /* 高さを画面の90%以内にする */
+  width: auto;
+  height: auto;
+  object-fit: contain; /* 写真全体を表示する */
+}
+
+/* 閉じるボタン */
+.lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+
+  background: none;
+  border: none;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+}

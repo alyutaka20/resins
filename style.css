@@ -1,0 +1,573 @@
+/* ページ全他の設定 */
+body{
+  margin: 0;
+  font-family: sans-serif;
+  color: #333;
+  background-color: #fff;
+  line-height: 1.6; 
+}
+
+/* 画像が画面からはみ出さないようにする */
+img{
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+/* 基本設定 */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+/* オープニング画面 */
+
+.opening {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+  background-color: #fff;
+  display: none;
+}
+
+.opening-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 写真 */
+.opening-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  transform: translate(-50%, -50%);
+
+  opacity: 0;
+  animation: photo-appear 3s ease forwards;
+}
+
+/* 写真を徐々に表示する */
+.opening-image {
+  animation: photo-appear 3s ease forwards;
+}
+
+@keyframes photo-appear {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* ロゴのSVG */
+.opening-logo {
+  position: absolute;
+  z-index: 1;
+
+  width: 90%;
+  max-width: 700px;
+  height: auto;
+
+  overflow: visible;
+}
+
+/* ロゴ文字 */
+.opening-logo text {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5;
+  font-size: 70px;
+  font-family: sans-serif;
+  letter-spacing: 4px;
+}
+
+/* オープニング後のページ */
+.page-content {
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* 文字の輪郭アニメーション */
+.opening-logo text {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw-logo 3s ease forwards;
+}
+
+@keyframes draw-logo {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.opening-logo text {
+  fill: #000;
+  stroke: none;
+  font-size: 70px;
+  font-family: sans-serif;
+  font-weight: normal;
+  letter-spacing: 4px;
+}
+
+/* 文字を中心から広げて表示する */
+.reveal-circle {
+  animation: reveal-letter 3s ease-out forwards;
+}
+
+/* 円を小さい状態から大きくする */
+@keyframes reveal-letter {
+  from {
+    r: 0;
+  }
+
+  to {
+    r: 60;
+  }
+}
+
+/* オープニング終了時 */
+.opening {
+  transition: opacity 0.8s ease;
+}
+
+.opening.opening-finished {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* オープニング中はスクロール禁止 */
+body.opening-active {
+  overflow: hidden;
+}
+
+/* 写真ごとのロゴ位置変更 */
+
+/* 写真1 */
+.opening-logo.top-left {
+  top: 80%;
+  left: 8%;
+}
+
+/* 写真2 */
+.opening-logo.bottom-right {
+  bottom: -8%;
+  right: -9%;
+}
+
+/* 写真3 */
+.opening-logo.center {
+  top: 2%;
+  left: 2%;
+  transform: rotate(-20deg);
+}
+
+/* 写真4 */
+.opening-logo.top-right {
+  top: 0%;
+  right: 2%;
+}
+
+/* 海の写真のときだけロゴを白くする */
+.opening-logo.white-logo text {
+  fill: white;
+}
+
+
+
+
+/* ロード画面終了後のcssはここから */
+
+
+/* グロナビ */
+
+/* .header{
+  display: flex;
+  justify-content: space-between;
+} */
+
+/* グローバルナビのリスト */
+.global-nav-list {
+  display: flex;             /* liを横並びにする */
+  justify-content: center;   /* li全体を中央に配置する */
+  align-items: center;       /* liを縦方向の中央に揃える */
+  gap: 30px;                 /* li同士の間隔を30pxにする */
+
+  padding: 0;                /* ul標準の左側余白をリセット */
+  margin: 0;                 /* ul標準の上下余白をリセット */
+}
+
+/* 各メニュー項目 */
+.global-nav-list li {
+  list-style: none;          /* リストの黒丸を消す */
+}
+
+.global-nav-list a{
+  text-decoration: none;
+  color: #000;
+}
+
+/* ヘッダー */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  text-align: center;
+  margin: 0;
+}
+
+
+/* =========================
+   グローバルナビのリンク
+========================= */
+
+.global-nav-list a {
+  display: flex;              /* アイコンと文字を配置する */
+  flex-direction: column;     /* アイコンの下に文字を配置 */
+  align-items: center;        /* 横方向の中央に揃える */
+  gap: 6px;                   /* アイコンと文字の間隔 */
+
+  text-decoration: none;      /* 下線を消す */
+  color: #333;                /* 文字とアイコンの色 */
+}
+
+/* =========================
+   ナビゲーションの文字
+   スマホでは非表示
+========================= */
+
+.nav-label {
+  display: none;              /* スマホでは文字を表示しない */
+  font-size: 14px;            /* 文字サイズ */
+  letter-spacing: 0.05em;     /* 文字の間隔 */
+}
+
+/* =========================
+   タブレット・PC向け
+   画面幅768px以上
+========================= */
+
+@media (min-width: 768px) {
+
+  /* ナビゲーションの文字を表示 */
+  .nav-label {
+    display: block;
+  }
+
+}
+
+
+/* =========================
+   ギャラリーアイコン
+========================= */
+
+.gallery-icon {
+  display: block;       /* 画像と同じように扱う */
+  width: 28px;           /* アイコンの横幅 */
+  height: 28px;          /* アイコンの高さ */
+  color: #333;           /* アイコンの色 */
+  transition: opacity 0.3s ease; /* ホバー時の変化を滑らかにする */
+}
+
+/* マウスを乗せたとき */
+.global-nav-list a:hover .gallery-icon {
+  opacity: 0.5;
+}
+
+/* =========================
+   コンタクトアイコン
+========================= */
+
+.contact-icon {
+  display: block;          /* インライン要素特有の隙間をなくす */
+  width: 28px;             /* アイコンの横幅 */
+  height: 28px;            /* アイコンの高さ */
+  color: #333;             /* アイコンの色 */
+  transition: opacity 0.3s ease; /* ホバー時の変化 */
+}
+
+/* マウスを乗せたとき */
+.global-nav-list a:hover .contact-icon {
+  opacity: 0.5;
+}
+
+
+/* =========================
+   メイン画像カルーセル
+========================= */
+
+/* 画像を囲む親要素 */
+.main-image-container {
+  width: 100%;          /* 親要素の幅いっぱいにする */
+  overflow: hidden;     /* 画像がはみ出した場合に隠す */
+}
+
+/* メイン画像を囲む親要素 */
+/* =========================
+   メイン画像カルーセル
+========================= */
+
+/* 画像を囲む親要素 */
+.main-image-container {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* カルーセルの画像 */
+.main-image {
+  display: block;
+
+  width: 100%;          /* 横幅は親要素いっぱい */
+  height: 400px;        /* 高さは自由に調整 */
+
+  object-fit: cover;    /* 比率を維持して領域を埋める */
+  object-position: center; /* 中央を基準に表示 */
+
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+/* PC */
+.main-image {
+  width: 80%;
+  margin-inline: auto;
+  height: 80vh;
+}
+
+/* タブレット */
+@media (max-width: 1024px) {
+  .main-image {
+    width: 90%;
+  }
+}
+
+/* スマホ */
+@media (max-width: 600px) {
+  .main-image {
+    width: 100%;
+  }
+}
+
+/* 写真を切り替えるときに追加するクラス */
+.main-image.fade-out {
+  opacity: 0;           /* 透明にして写真を消す */
+}
+
+
+
+/* アバウト */
+
+.about {
+  margin-top: 8vh;
+}
+
+.about h2{
+  font-size: 50%;
+}
+
+.about p{
+  font-size: 30%;
+}
+
+/* コンタクト */
+
+/* =========================
+   CONTACT セクション
+   スマホ向け基本設定
+========================= */
+
+/* セクション全体 */
+.contact {
+  display: flex;
+  flex-direction: column; /* スマホでは縦並び */
+  gap: 40px;               /* 左右の要素間の余白 */
+  width: 100%;
+  max-width: 1100px;       /* 最大幅を制限 */
+  box-sizing: border-box;
+  padding: 60px 20px;
+  margin: 0 auto;
+}
+
+/* 左側のタイトル */
+.contact-heading h2 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: normal;
+  letter-spacing: 0.08em;
+}
+
+/* 日本語のサブタイトル */
+.contact-heading p {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+/* 右側のフォームエリア */
+.contact-form-area {
+  width: 100%;
+}
+
+/* 説明文 */
+.contact-form-area > p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.8;
+}
+
+/* =========================
+   タブレット・PC
+========================= */
+
+@media (min-width: 768px) {
+
+  .contact {
+    flex-direction: row; /* 横並びに変更 */
+    align-items: flex-start;
+    gap: 80px;
+    padding: 100px 30px;
+  }
+
+  /* 左側のタイトル */
+  .contact-heading {
+    flex: 1;
+  }
+
+  /* 右側のフォームエリア */
+  .contact-form-area {
+    flex: 1.5;
+  }
+
+}
+
+/* =========================
+   CONTACT フォーム
+========================= */
+
+/* フォーム全体 */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* 入力項目同士の間隔 */
+  margin-top: 40px;
+}
+
+/* 入力項目1つ分 */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 項目名 */
+.form-group label {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: #555;
+}
+
+/* 1行入力欄と複数行入力欄 */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 0;
+
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: #222;
+
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
+
+  outline: none;
+  border-radius: 0;
+}
+
+/* 入力欄にフォーカスしたとき */
+.form-group input:focus,
+.form-group textarea:focus {
+  border-bottom: 1px solid #222;
+}
+
+/* 入力欄の案内文字 */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #aaa;
+  font-size: 0.85rem;
+}
+
+/* テキストエリア */
+.form-group textarea {
+  resize: vertical; /* 縦方向だけサイズ変更可能 */
+  min-height: 120px;
+}
+
+/* 送信ボタン */
+.contact-submit {
+  align-self: flex-start;
+  min-width: 150px;
+  padding: 15px 35px;
+
+  color: #fff;
+  background: #222;
+  border: 1px solid #222;
+
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* PCでマウスを乗せたとき */
+@media (hover: hover) {
+  .contact-submit:hover {
+    color: #222;
+    background: #fff;
+  }
+}
+
+/* =========================
+   タブレット・PC表示
+========================= */
+

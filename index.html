@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESINs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- オープニング画面 -->
+  <div class="opening" id="opening">
+
+    <div class="opening-content">
+
+      <!-- 写真 -->
+      <img
+        src="img/IMG_5414.jpeg"
+        alt=""
+        class="opening-image"
+        id="openingImage"
+      >
+
+      <!-- 文字のアニメーション -->
+      <svg
+        class="opening-logo"
+        viewBox="0 0 500 150"
+        aria-label="RESINs"
+        role="img"
+      >
+      <defs>
+        <clipPath id="clipR" clipPathUnits="userSpaceOnUse">
+          <circle class="reveal-circle" cx="50" cy="60" r="0" />
+        </clipPath>
+        <clipPath id="clipE" clipPathUnits="userSpaceOnUse">
+          <circle class="reveal-circle" cx="125" cy="60" r="0" />
+        </clipPath>
+        <clipPath id="clipS" clipPathUnits="userSpaceOnUse">
+          <circle class="reveal-circle" cx="200" cy="60" r="0" />
+        </clipPath>
+        <clipPath id="clipI" clipPathUnits="userSpaceOnUse">
+          <circle class="reveal-circle" cx="275" cy="60" r="0" />
+        </clipPath>
+        <clipPath id="clipN" clipPathUnits="userSpaceOnUse">
+          <circle class="reveal-circle" cx="350" cy="60" r="0" />
+        </clipPath>
+        <clipPath id="clips" clipPathUnits="userSpaceOnUse">
+          <circle class="reveal-circle" cx="425" cy="60" r="0" />
+        </clipPath>
+      </defs>
+
+          <text x="50" y="85" text-anchor="middle" clip-path="url(#clipR)">R</text>
+          <text x="125" y="85" text-anchor="middle" clip-path="url(#clipE)">E</text>
+          <text x="200" y="85" text-anchor="middle" clip-path="url(#clipS)">S</text>
+          <text x="275" y="85" text-anchor="middle" clip-path="url(#clipI)">I</text>
+          <text x="350" y="85" text-anchor="middle" clip-path="url(#clipN)">N</text>
+          <text x="425" y="85" text-anchor="middle" clip-path="url(#clips)">s</text>
+        </svg>
+    </div>
+  </div>
+
+  <!-- オープニング終了後のページ -->
+  <header class="header">
+
+    <h1 class="logo">RESINs</h1>
+
+    <nav class="global-nav">
+      <ul class="global-nav-list">
+        <a href="gallery.html" aria-label="Gallery">
+          <!-- 写真が重なったアイコン -->
+          <svg
+            class="gallery-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="13" height="13" rx="1.5" />
+            <path d="M8 8h13v13H8z" />
+            <circle cx="12" cy="12" r="1.5" />
+            <path d="m8 18 3-3 2 2 2-2 3 3" />
+          </svg>
+            <!-- 768px以上で表示する文字 -->
+            <span class="nav-label">Gallery</span>
+        </a>
+
+        <a href="#contact" aria-label="Contact">
+
+          <!-- メールアイコン -->
+          <svg
+            class="contact-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m3 7 9 6 9-6" />
+          </svg>
+          <!-- 768px以上で表示する文字 -->
+          <span class="nav-label">Contact</span>
+
+        </a>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="about">
+
+    <h2>一つ一つが手作り。世界中にたった一つしかないオリジナルをあなたに。</h2>
+
+    <div class="main-image-container">
+
+      <img
+        src="img/IMG_5428.jpeg"
+        alt=""
+        class="main-image"
+        id="mainImage"
+      >
+    </div>
+
+    <p>受注してから一つ一つが手作り。<br>
+    世界に同じものは一つもありません。<br>
+    あなたも世界にたった一つのアートを手にしませんか？</p>
+
+  </section>
+
+  <!-- =========================
+     お問い合わせセクション
+========================= -->
+
+<section class="contact" id="contact">
+
+  <!-- 左側：タイトル -->
+  <div class="contact-heading">
+    <h2>CONTACT</h2>
+    <p>お問い合わせ</p>
+  </div>
+
+  <!-- 右側：フォーム -->
+  <div class="contact-form-area">
+
+    <!-- 右側：フォーム -->
+<div class="contact-form-area">
+
+  <p>お気軽にお問い合わせください。</p>
+
+  <!-- お問い合わせフォーム -->
+  <form class="contact-form">
+
+    <!-- お名前 -->
+    <div class="form-group">
+      <label for="name">NAME</label>
+      <input
+        type="text"
+        id="name"
+        name="name"
+        placeholder="お名前を入力してください"
+        required
+      >
+    </div>
+
+    <!-- メールアドレス -->
+    <div class="form-group">
+      <label for="email">EMAIL</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="メールアドレスを入力してください"
+        required
+      >
+    </div>
+
+    <!-- 件名 -->
+    <div class="form-group">
+      <label for="subject">SUBJECT</label>
+      <input
+        type="text"
+        id="subject"
+        name="subject"
+        placeholder="件名を入力してください"
+        required
+      >
+    </div>
+
+    <!-- お問い合わせ内容 -->
+    <div class="form-group">
+      <label for="message">MESSAGE</label>
+      <textarea
+        id="message"
+        name="message"
+        placeholder="お問い合わせ内容を入力してください"
+        rows="5"
+        required
+      ></textarea>
+    </div>
+
+    <!-- 送信ボタン -->
+    <button type="submit" class="contact-submit">
+      SEND
+    </button>
+
+  </form>
+
+</div>
+  </div>
+
+</section>
+  <script src="script.js"></script>
+</body>
+</html>

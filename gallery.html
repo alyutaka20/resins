@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+
+  <!-- スマホ・タブレットでも画面幅に合わせて表示する -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ページタイトル -->
+  <title>Gallery | RESINs</title>
+
+  <!-- 共通CSSを読み込む -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- ギャラリーページ専用CSSを読み込む -->
+  <link rel="stylesheet" href="gallery.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       ヘッダー
+  ========================= -->
+
+  <header class="header">
+
+    <!-- ロゴをクリックするとトップページに戻る -->
+    <a href="index.html" class="logo">RESINs</a>
+
+  </header>
+
+
+  <!-- =========================
+       ギャラリーページ
+  ========================= -->
+
+  <main class="gallery-page">
+
+    <!-- ページタイトル -->
+    <h1 class="gallery-title">Gallery</h1>
+
+    <!-- 作品一覧 -->
+    <ul class="gallery-grid">
+
+      <li>
+        <img src="img/IMG_5428.jpeg" alt="作品写真1">
+      </li>
+
+      <li>
+        <img src="img/IMG_5429.jpeg" alt="作品写真2">
+      </li>
+
+      <li>
+        <img src="img/IMG_5430.jpeg" alt="作品写真3">
+      </li>
+
+      <li>
+        <img src="img/IMG_5431.jpeg" alt="作品写真4">
+      </li>
+
+      <li>
+        <img src="img/IMG_5432.jpeg" alt="作品写真5">
+      </li>
+
+      <li>
+        <img src="img/IMG_5433.jpeg" alt="作品写真6">
+      </li>
+
+      <li>
+        <img src="img/IMG_5434.jpeg" alt="作品写真7">
+      </li>
+
+      <li>
+        <img src="img/IMG_5435.jpeg" alt="作品写真8">
+      </li>
+
+      <li>
+        <img src="img/IMG_5436.jpeg" alt="作品写真9">
+      </li>
+
+      <li>
+        <img src="img/IMG_5437.jpeg" alt="作品写真10">
+      </li>
+
+    </ul>
+
+  </main>
+
+    <!-- =========================
+       ライトボックス
+  ========================= -->
+
+  <div class="lightbox" id="lightbox">
+
+    <!-- 拡大表示する写真 -->
+    <img
+      src=""
+      alt=""
+      class="lightbox-image"
+      id="lightboxImage"
+    >
+
+    <!-- 閉じるボタン -->
+    <button
+      type="button"
+      class="lightbox-close"
+      id="lightboxClose"
+      aria-label="閉じる"
+    >
+      ×
+    </button>
+
+  </div>
+
+
+    <!-- ギャラリー専用JavaScriptを読み込む -->
+  <script src="gallery.js"></script>
+</body>
+</html>
