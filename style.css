@@ -59,7 +59,8 @@ body {
   height: 100%;
 }
 
-/* 写真 */
+
+
 .opening-image {
   position: absolute;
   top: 50%;
@@ -77,10 +78,6 @@ body {
 }
 
 /* 写真を徐々に表示する */
-.opening-image {
-  animation: photo-appear 3s ease forwards;
-}
-
 @keyframes photo-appear {
   from {
     opacity: 0;
@@ -92,6 +89,8 @@ body {
     transform: translate(-50%, -50%) scale(1);
   }
 }
+
+
 
 /* ロゴのSVG */
 .opening-logo {
