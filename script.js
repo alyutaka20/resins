@@ -65,8 +65,8 @@ if (selectedPhoto.color === "white") {
 const openingContent = document.querySelector(".opening-content");
 
 function adjustOpeningContent() {
-  const imageWidth = openingImage.clientWidth;
-  const imageHeight = openingImage.clientHeight;
+  const imageWidth = opening.clientWidth;
+  const imageHeight = opening.clientHeight;
 
   const naturalWidth = openingImage.naturalWidth;
   const naturalHeight = openingImage.naturalHeight;
