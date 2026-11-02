@@ -85,7 +85,7 @@ body.opening-active {
 
 /* 位置クラスは logo-wrapper 基準ではなく、JSで最終位置を決めるので簡易に */
 .opening-logo.top-left {
-  top: 75%;
+  bottom: -5%;
   left: 8%;
 }
 
