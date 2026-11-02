@@ -61,7 +61,12 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
+  opacity: 0; /* サイズ確定まで非表示 */
 }
+.opening.ready .opening-content {
+  opacity: 1;
+}
+
 
 /* 写真 */
 .opening-image {
@@ -81,22 +86,32 @@ body {
 }
 
 /* 写真を徐々に表示する */
+
 .opening-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: translate(-50%, -50%);
+  opacity: 0; /* 最初は非表示 */
+  /* animation はここでは書かない */
+}
+
+/* サイズ確定後にアニメーション開始 */
+.opening.ready .opening-image {
   animation: photo-appear 3s ease forwards;
 }
 
-@keyframes photo-appear {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(1);
-  }
-
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-  }
+/* 既存の .reveal-circle の animation を削除して以下に */
+.reveal-circle {
+  /* animation はここでは書かない */
 }
 
+.opening.ready .reveal-circle {
+  animation: reveal-letter 3s ease-out forwards;
+}
 /* ロゴのSVG */
 .opening-logo {
   position: absolute;
@@ -111,13 +126,12 @@ body {
 
 /* ロゴ文字 */
 .opening-logo text {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 1.5;
+  fill: #000;
+  stroke: none;
   font-size: 70px;
   font-family: sans-serif;
+  font-weight: normal;
   letter-spacing: 4px;
-}
 
 /* オープニング後のページ */
 .page-content {
