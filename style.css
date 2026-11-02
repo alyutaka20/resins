@@ -7,6 +7,10 @@ body{
   line-height: 1.6; 
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 /* 画像が画面からはみ出さないようにする */
 img{
   max-width: 100%;
