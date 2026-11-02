@@ -48,6 +48,8 @@ const selectedPhoto  = photos[randomIndex];
 // 選んだ写真を表示する
 const openingImage = document.getElementById("openingImage");
 openingImage.src = selectedPhoto.src;
+// 写真の読み込みが完了したら表示サイズを調整
+openingImage.addEventListener("load", adjustOpeningContent);
 
 const openingLogo = document.querySelector(".opening-logo");
 
