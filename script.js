@@ -1,10 +1,15 @@
 // =========================
-// オープニング
+// オープニング（実機安定版）
 // =========================
 const opening = document.getElementById("opening");
-const openingContent = document.getElementById("openingContent");
 const openingImage = document.getElementById("openingImage");
 const openingLogo = document.getElementById("openingLogo");
+
+// logo-wrapper をJSで作る
+const logoWrapper = document.createElement("div");
+logoWrapper.className = "logo-wrapper";
+openingLogo.parentNode.insertBefore(logoWrapper, openingLogo);
+logoWrapper.appendChild(openingLogo);
 
 document.body.classList.add("opening-active");
 
@@ -17,56 +22,76 @@ const photos = [
 
 const selected = photos[Math.floor(Math.random() * photos.length)];
 
-// ロゴ位置・色をセット
+// ロゴの位置クラスと色
 openingLogo.classList.add(selected.position);
 if (selected.color === "white") {
   openingLogo.classList.add("white-logo");
 }
 
-// 画像をセット
 openingImage.src = selected.src;
 
-function adjustOpening() {
+/**
+ * 写真が実際に描画されている領域を計算して
+ * logo-wrapper をその上にピッタリ乗せる
+ */
+function placeLogoOverImage() {
   const vw = opening.clientWidth;
   const vh = opening.clientHeight;
   const nw = openingImage.naturalWidth;
   const nh = openingImage.naturalHeight;
 
-  if (!nw || !nh) return;
+  if (!nw || !nh) return false;
 
+  // object-fit: contain の実際の表示サイズを計算
   const scale = Math.min(vw / nw, vh / nh);
+  const displayW = nw * scale;
+  const displayH = nh * scale;
 
-  openingContent.style.width = `${nw * scale}px`;
-  openingContent.style.height = `${nh * scale}px`;
+  // 中央配置のオフセット
+  const offsetX = (vw - displayW) / 2;
+  const offsetY = (vh - displayH) / 2;
 
-  // サイズ確定後に表示開始
-  if (!opening.classList.contains("is-ready")) {
-    // 1フレーム待ってから表示（レイアウト確定を確実にする）
-    requestAnimationFrame(() => {
-      opening.classList.add("is-ready");
+  // logo-wrapper を写真の表示領域に合わせる
+  logoWrapper.style.position = "absolute";
+  logoWrapper.style.left = offsetX + "px";
+  logoWrapper.style.top = offsetY + "px";
+  logoWrapper.style.width = displayW + "px";
+  logoWrapper.style.height = displayH + "px";
 
-      // 4秒後にフェードアウト
-      setTimeout(() => {
-        opening.classList.add("opening-finished");
-        document.body.classList.remove("opening-active");
-      }, 4000);
-    });
-  }
+  return true;
 }
 
-openingImage.addEventListener("load", adjustOpening);
+function startOpening() {
+  const success = placeLogoOverImage();
+  if (!success) return;
 
-// キャッシュ済みの場合
+  // レイアウト確定後に表示開始
+  requestAnimationFrame(() => {
+    opening.classList.add("is-ready");
+
+    // 4秒後にフェードアウト
+    setTimeout(() => {
+      opening.classList.add("opening-finished");
+      document.body.classList.remove("opening-active");
+    }, 4000);
+  });
+}
+
+openingImage.addEventListener("load", startOpening);
+
+// キャッシュ済み対応
 if (openingImage.complete && openingImage.naturalWidth > 0) {
-  adjustOpening();
+  startOpening();
 }
 
-// リサイズ対応（アドレスバー対策）
+// 画面回転・アドレスバー対策
 let resizeTimer;
 window.addEventListener("resize", () => {
   if (opening.classList.contains("opening-finished")) return;
   clearTimeout(resizeTimer);
-  resizeTimer = setTimeout(adjustOpening, 50);
+  resizeTimer = setTimeout(() => {
+    placeLogoOverImage();
+  }, 60);
 });
 
 // =========================
@@ -90,7 +115,6 @@ let currentIndex = 0;
 
 function changePicture() {
   mainImage.classList.add("fade-out");
-
   setTimeout(() => {
     currentIndex = (currentIndex + 1) % pictures.length;
     mainImage.src = pictures[currentIndex];
