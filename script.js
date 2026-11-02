@@ -81,15 +81,15 @@ function adjustOpeningContent() {
 }
 
 // 画像の読み込みが終わったら位置とサイズを調整
-// openingImage.addEventListener("load", adjustOpeningContent);
+openingImage.addEventListener("load", adjustOpeningContent);
 
 // 画面サイズが変わったときも再調整
-// window.addEventListener("resize", adjustOpeningContent);
+window.addEventListener("resize", adjustOpeningContent);
 
 // すでに画像が読み込まれている場合にも実行
-// if (openingImage.complete && openingImage.naturalWidth > 0) {
-//   adjustOpeningContent();
-// }
+if (openingImage.complete && openingImage.naturalWidth > 0) {
+  adjustOpeningContent();
+}
 
 
 // =========================
