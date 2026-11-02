@@ -76,7 +76,7 @@ body {
   transform: translate(-50%, -50%);
 
   /* 最初は透明 */
-  opacity: 0;
+  opacity: 1;
 
   /* 透明度だけを3秒かけて変化させる */
   animation: photo-appear 3s ease forwards;
