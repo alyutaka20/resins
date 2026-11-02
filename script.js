@@ -91,7 +91,7 @@ function adjustOpeningContent() {
 // すでに画像が読み込まれている場合にも実行
 // if (openingImage.complete && openingImage.naturalWidth > 0) {
   // adjustOpeningContent();
-}
+
 
 
 // =========================
