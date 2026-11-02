@@ -41,7 +41,7 @@ body {
 
   width: 100%;
   height: 100vh;
-  min-height: 100vh;
+  height: 100dvh;
 
   z-index: 1000;
 
@@ -59,7 +59,6 @@ body {
   height: 100%;
 }
 
-
 /* 写真 */
 .opening-image {
   position: absolute;
@@ -69,27 +68,28 @@ body {
   width: 100%;
   height: 100%;
 
-  /* 写真全体を表示 */
   object-fit: contain;
 
-  /* 中央に固定 */
   transform: translate(-50%, -50%);
 
-  /* 最初は透明 */
-  opacity: 1;
-
-  /* 透明度だけを3秒かけて変化させる */
+  opacity: 0;
   animation: photo-appear 3s ease forwards;
 }
 
-/* 写真の透明度だけを変化させる */
+/* 写真を徐々に表示する */
+.opening-image {
+  animation: photo-appear 3s ease forwards;
+}
+
 @keyframes photo-appear {
   from {
     opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
   }
 
   to {
     opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
