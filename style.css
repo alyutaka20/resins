@@ -85,18 +85,18 @@ body.opening-active {
 
 /* 位置クラスは logo-wrapper 基準ではなく、JSで最終位置を決めるので簡易に */
 .opening-logo.top-left {
-  top: 75%;
-  left: 5%;
+  top: 90%;
+  left: 8%;
 }
 
 .opening-logo.bottom-right {
-  bottom: 5%;
-  right: 5%;
+  bottom: -5%;
+  right: 3%;
 }
 
 .opening-logo.center {
-  top: 8%;
-  left: 8%;
+  top: 5%;
+  left: 3%;
   transform: rotate(-18deg);
 }
 
