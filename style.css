@@ -125,7 +125,7 @@ body {
 .opening-logo text {
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
-  animation: draw-logo 3s ease forwards;
+  /* animation: draw-logo 3s ease forwards; */
 }
 
 @keyframes draw-logo {
