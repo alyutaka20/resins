@@ -1,144 +1,101 @@
-// オープニング画面を取得
+// =========================
+// オープニング
+// =========================
 const opening = document.getElementById("opening");
-// オープニング中はスクロールを禁止
+const openingContent = document.getElementById("openingContent");
+const openingImage = document.getElementById("openingImage");
+const openingLogo = document.getElementById("openingLogo");
+
 document.body.classList.add("opening-active");
 
-// 写真の候補
 const photos = [
-  {
-    src: "img/IMG_5414.jpeg",
-    position: "top-left"
-  },
-  {
-    src: "img/IMG_5415.jpeg",
-    position: "bottom-right"
-  },
-  {
-    src: "img/IMG_5416.jpeg",
-    position: "center",
-    size: "small"
-  },
-  {
-    src: "img/黄金色に輝く静かな海辺の夕景.png",
-    position: "top-right",
-    color: "white"
-  }
+  { src: "img/IMG_5414.jpeg", position: "top-left" },
+  { src: "img/IMG_5415.jpeg", position: "bottom-right" },
+  { src: "img/IMG_5416.jpeg", position: "center" },
+  { src: "img/黄金色に輝く静かな海辺の夕景.png", position: "top-right", color: "white" }
 ];
 
-// 写真をランダムに選ぶ
-const randomIndex = Math.floor(Math.random() * photos.length);
-const selectedPhoto = photos[randomIndex];
+const selected = photos[Math.floor(Math.random() * photos.length)];
 
-// 選んだ写真を表示する
-const openingImage = document.getElementById("openingImage");
-const openingLogo = document.querySelector(".opening-logo");
-const openingContent = document.querySelector(".opening-content");
-
-openingImage.src = selectedPhoto.src;
-
-// 位置クラスをセット
-openingLogo.classList.remove("top-left", "bottom-right", "center", "top-right");
-openingLogo.classList.add(selectedPhoto.position);
-
-// 白いロゴ対応
-openingLogo.classList.remove("white-logo");
-if (selectedPhoto.color === "white") {
+// ロゴ位置・色をセット
+openingLogo.classList.add(selected.position);
+if (selected.color === "white") {
   openingLogo.classList.add("white-logo");
 }
 
-// サイズ調整関数
-function adjustOpeningContent() {
-  const imageWidth = opening.clientWidth;
-  const imageHeight = opening.clientHeight;
-  const naturalWidth = openingImage.naturalWidth;
-  const naturalHeight = openingImage.naturalHeight;
+// 画像をセット
+openingImage.src = selected.src;
 
-  // 画像がまだ読み込めていない場合は何もしない
-  if (!naturalWidth || !naturalHeight) return;
+function adjustOpening() {
+  const vw = opening.clientWidth;
+  const vh = opening.clientHeight;
+  const nw = openingImage.naturalWidth;
+  const nh = openingImage.naturalHeight;
 
-  const scale = Math.min(
-    imageWidth / naturalWidth,
-    imageHeight / naturalHeight
-  );
+  if (!nw || !nh) return;
 
-  openingContent.style.width = `${naturalWidth * scale}px`;
-  openingContent.style.height = `${naturalHeight * scale}px`;
+  const scale = Math.min(vw / nw, vh / nh);
 
-  // ★ここが重要：サイズ確定後に ready を付けてアニメーション開始
-  if (!opening.classList.contains("ready")) {
-    opening.classList.add("ready");
+  openingContent.style.width = `${nw * scale}px`;
+  openingContent.style.height = `${nh * scale}px`;
 
-    // サイズ確定から4秒後にオープニング終了
-    setTimeout(() => {
-      opening.classList.add("opening-finished");
-      document.body.classList.remove("opening-active");
-    }, 4000);
+  // サイズ確定後に表示開始
+  if (!opening.classList.contains("is-ready")) {
+    // 1フレーム待ってから表示（レイアウト確定を確実にする）
+    requestAnimationFrame(() => {
+      opening.classList.add("is-ready");
+
+      // 4秒後にフェードアウト
+      setTimeout(() => {
+        opening.classList.add("opening-finished");
+        document.body.classList.remove("opening-active");
+      }, 4000);
+    });
   }
 }
 
-// 画像読み込み完了時に調整
-openingImage.addEventListener("load", adjustOpeningContent);
+openingImage.addEventListener("load", adjustOpening);
 
-// すでにキャッシュなどで読み込み済みの場合
+// キャッシュ済みの場合
 if (openingImage.complete && openingImage.naturalWidth > 0) {
-  adjustOpeningContent();
+  adjustOpening();
 }
 
-// 画面サイズ変更時も再調整（アドレスバーの出し入れ対策）
+// リサイズ対応（アドレスバー対策）
+let resizeTimer;
 window.addEventListener("resize", () => {
-  if (!opening.classList.contains("opening-finished")) {
-    adjustOpeningContent();
-  }
+  if (opening.classList.contains("opening-finished")) return;
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(adjustOpening, 50);
 });
+
 // =========================
 // メイン画像カルーセル
 // =========================
-
-// 写真の一覧
-const picture = [
-  { src: "img/IMG_5428.jpeg" },
-  { src: "img/IMG_5429.jpeg" },
-  { src: "img/IMG_5430.jpeg" },
-  { src: "img/IMG_5431.jpeg" },
-  { src: "img/IMG_5432.jpeg" },
-  { src: "img/IMG_5433.jpeg" },
-  { src: "img/IMG_5434.jpeg" },
-  { src: "img/IMG_5435.jpeg" },
-  { src: "img/IMG_5436.jpeg" },
-  { src: "img/IMG_5437.jpeg" },
+const pictures = [
+  "img/IMG_5428.jpeg",
+  "img/IMG_5429.jpeg",
+  "img/IMG_5430.jpeg",
+  "img/IMG_5431.jpeg",
+  "img/IMG_5432.jpeg",
+  "img/IMG_5433.jpeg",
+  "img/IMG_5434.jpeg",
+  "img/IMG_5435.jpeg",
+  "img/IMG_5436.jpeg",
+  "img/IMG_5437.jpeg"
 ];
 
-// HTMLの画像要素を取得
 const mainImage = document.getElementById("mainImage");
-
-// 現在表示している写真の番号
 let currentIndex = 0;
 
-// 写真を切り替える関数
 function changePicture() {
-
-  // 現在の写真をふわっと消す
   mainImage.classList.add("fade-out");
 
-  // 1秒後に次の写真へ切り替える
   setTimeout(() => {
-
-    // 次の写真番号に進む
-    currentIndex++;
-
-    // 最後の写真まで進んだら最初に戻す
-    if (currentIndex >= picture.length) {
-      currentIndex = 0;
-    }
-
-    // 次の写真を設定する
-    mainImage.src = picture[currentIndex].src;
-
-    // 写真をふわっと表示する
+    currentIndex = (currentIndex + 1) % pictures.length;
+    mainImage.src = pictures[currentIndex];
     mainImage.classList.remove("fade-out");
-
   }, 1000);
 }
 
-// 3秒ごとに写真を切り替える
 setInterval(changePicture, 4000);
